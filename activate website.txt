@@ -1,2 +1,16 @@
+
+# first tybe c:\Users\Alatweh\Anaconda3\Scripts\activate base... to activate your anaconda  
+# then create the vertual enviroment by using: conda create --TodoApp python=3.7 (it is easier to name the vertual enviroment same as project or app name)
+# activate your vertual envairoment by typing: conda activate TodoApp
+
+# initelize the reposetery to put in your github account by using: git init
+# need to put it in our github account
+# first type: git add .
+# then commit that by typing: git commit -m "Initial commit. Setting up the project 
+# then go to your github account and create new reposetery and name it: TodoApp
+# then copy the link of reposetery you create
+# then add your project to github by typing: git remote add origin https://github.com/MoeAlatweh/TodoApp.git
+# then push your app to github by using: git push origin master
+
 to run server for the app:
 python app.py

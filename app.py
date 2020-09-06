@@ -79,4 +79,4 @@ def delete(id):
 
 # you run the app on debug mode to see the change when you refresh the page
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
