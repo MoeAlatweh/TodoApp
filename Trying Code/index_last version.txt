@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Todo App</title>     <!-- show the app name in tab of browser-->
     <!-- Bootstrap CSS -->
-    <!-- some classes we use come from bootstrap link billow (it is library has a lot of classes of css)  -->
+    <!-- some classes we use come from boostrap link billow (it is library has a lot of classes of css)  -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="icon" href="data:,">
@@ -15,7 +15,7 @@
 
 <!-- create the container(div) that have all the code -->
 <div class="todo">
-    <!-- create name of the app on top of the page using class from css file -->
+    <!-- create name of the app on top of the page using class from scc file -->
     <h1 class="todo__header">To Do App 📝</h1>
     <!-- create container to have welcome question and block to add the task we need -->
     <div class="card todo__headerContainer">
@@ -27,7 +27,7 @@
             <!-- we use input with placeholder to have empty space to add what we want to add with note explain what we will add-->
             <!-- we define what we want to type by using type and choose text (type="text") and we put name to use it later in backend by using (name="todoItem") -->
             <input placeholder="Write task here..." type="text" name="todoitem">
-            <!-- create button to submit your task by using bootstrap class, using type submit and put name as +Add Item -->
+            <!-- create buttom to submit your task by using boostrap class, using type submit and put name as +Add Item -->
             <input class="btn btn-info" type="submit" value="➕ Add Item">
         </form>
     </div>
@@ -47,11 +47,13 @@
                 <li class="todo__item">
                     <!-- add text of item and make dynamic variable that will saved in the database -->
                     <p>{{ todo.text }}</p>
-                    <!-- create button and connect it with backend and put name (Complete)-->
+                    <!-- create bottom and connect it with backend and put name (Complete)-->
                     <a class="btn btn-outline-success" href="{{ url_for('complete', id=todo.id) }}">Complete ➡️</a>
                     <!-- create link and connect it with backend and put name (delete)-->
                     <a class="todo__close" href="{{ url_for('delete', id=todo.id) }}">❌</a>
                 </li>
+		delete this note from the program
+		 <!-- need to end for loop / we use these parenthesis {{  }} and {%  %} to code inside html file-->
                 {% endfor %}
             </ul>
 

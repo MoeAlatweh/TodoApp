@@ -1,0 +1,57 @@
+# to import flask from its library
+from flask import Flask
+# to rendering the actual html file
+from flask import render_template
+# to import library of database
+from flask_sqlalchemy import SQLAlchemy
+
+
+
+
+# every time you need to use flask, you have to create the object flask
+app = Flask(__name__)   # between parentheses are ((shift+ dash bottom twice)(name)(shift+ dash bottom twice))
+# use these lines to define our database
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://C:/todo.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
+
+# creat our data base table
+class Todo(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    text = db.Column(db.String(200))
+    complete = db.Column(db.Boolean)
+
+# to render the app on html file we have to show something when we run our app
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+if  __name__=='__main__':
+    app.run(debug=True)     # to allow you make changes and see them right away
+# to create folder that have the database,go to the terminal and type:
+# sqlite3 todo.db
+# .tables
+# .exit
+# type (python) to open python terminal.
+# from app import db
+# db.create_all()   # to create the tables in our database
+# exit()
+        # it should create the tables
+# pyrhon app.py         # to run a srvere to run our app
+
+## to call our datbase file:
+#go to the terminal and activate python 
+# type> from app import db
+#to access our file:
+# type> from app import Todo
+# to see what we have in our data :
+#type>  Todo.query.all()
+# to creat object in our file:
+#type> ex: todo_1 = Todo(text='buy home', complete=False)
+# to add it to our database:
+#type> db.session.add(todo_1)
+# but to save it inside our database we need to commit that:
+#type> db.session.commit()
+# if you like to make filter:
+#type> ex: Todo.query.filter_by(complete=False).all()
+  

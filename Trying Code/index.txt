@@ -1,0 +1,207 @@
+###branch: step_1_create_frontend
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo App</title>
+    <!-- Bootstrap CSS -->
+    <!-- some classes we use come from boostrap link billow (it is library has a lot of classes of css)  -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<!-- create the main container for our app-->   <!-- that's how you add comment on html-->
+<!--to make hard refresh press the left shift + bottom of refresh -->
+<div class="todo">
+    <h1 class="todo__header">To Do App 📝</h1>
+
+    <div class="card todo__headerContainer">    <!--the container that's has the task we need to do-->
+        <p class="font-weight-bold"> What we are doing today? 🔥 </p>  <!-- class indicate how the will look like-->
+        <form class="todo__form ">       <!--use form to do something not just show stuff -->
+            <!-- we use input with placeholder to have empty space to add what we want to add with note explain what we will add-->
+            <!-- we define what we want to type by using type and choose text (type="text") and we put name to use it later in backend by using (name="todoItem") -->
+            <input placeholder=" Write task here..." type="text" name="todoItem">
+            <input class="btn btn-info" type="submit" value="➕ Add Item">
+        </form>
+    </div>
+
+    <div class="todo__itemContainer">
+        <div class="card todo__innerItemContainer">
+            <h2 class="todo__itemHeader" >To Do's ⏲️</h2>
+            <ul class="todo__container">
+                <li class="todo__item">
+                    <p> My todo X </p>
+                    <a class="btn btn-outline-success" href="#">
+                        Complete ➡️
+                    </a>
+                    <a class="todo__close" href="#"> ❌ </a>
+                </li>
+            </ul>
+        </div>
+
+
+        <div class="card todo__innerItemContainer">
+            <h2 class="todo__itemHeader" >Done ✅</h2>
+            <ul class="todo__container">
+                <li class="todo__item">
+                    <p> My Finished Task X </p>
+                    <a class="btn btn-outline-secondary" href="#">
+                        ⬅️  Undo ️️
+                    </a>
+                    <a class="todo__close" href="#"> ❌ </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+
+
+</div>
+
+</body>
+</html>
+
+
+###branch: step_2_add_todos
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo App</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+
+
+<div class="todo">
+    <h1 class="todo__header">To Do App 📝</h1>
+
+    <div class="card todo__headerContainer">
+        <p class="font-weight-bold">What are we doing today? 🔥</p>
+        <form class="todo__form" action="{{ url_for('add') }}" method="POST">       <!-- add action to our form to show the change we add on app.py file under name add -->
+            <input placeholder="Write task here..." type="text" name="todoitem">
+            <input class="btn btn-info" type="submit" value="➕ Add Item">
+        </form>
+    </div>
+
+    <div class="todo__itemContainer">
+
+        <div class="card todo__innerItemContainer">
+            <h2 class="todo__itemHeader">To Do's 🕐</h2>
+
+            <ul class="todo__container">
+                {% for todo in incomplete %}     <!-- add for loop to show the tasks we will create-->
+
+                <li class="todo__item">
+                    <p>{{ todo.text }}</p>      <!-- make dynamic variable that wii saved in the database -->
+                    <a class="btn btn-outline-success" href="#" class="">Complete
+                        ➡️</a>
+                    <a class="todo__close" href="#" class="">❌</a>
+                </li>
+
+                {% endfor %}                <!-- need to end for loop / we use these parenthesis {{  }} and {%  %} to apython code inside html file-->
+
+            </ul>
+        </div>
+
+        <div class="card todo__innerItemContainer">
+            <h2 class="todo__itemHeader">Done ✅</h2>
+
+            <ul class="todo__container">
+
+                <li class="todo__item">
+                    <p>My finished task X</p>
+                    <a class="btn btn-outline-secondary" href="#" class="">⬅️
+                        Undo</a>
+                    <a class="todo__close" href="#" class="">❌</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
+
+###branch: step_4_final
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo App</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+
+
+<div class="todo">
+    <h1 class="todo__header">To Do App 📝</h1>
+
+    <div class="card todo__headerContainer">
+        <p class="font-weight-bold">What are we doing today? 🔥</p>
+        <form class="todo__form" action="{{ url_for('add') }}" method="POST">       <!-- add action to our form to show the change we add on app.py file under name add -->
+            <input placeholder="Write task here..." type="text" name="todoitem">
+            <input class="btn btn-info" type="submit" value="➕ Add Item">
+        </form>
+    </div>
+
+    <div class="todo__itemContainer">
+        {% if incomplete %}         <!-- add it to remove all boxes if we don't have anything -->
+        <div class="card todo__innerItemContainer">
+            <h2 class="todo__itemHeader">To Do's 🕐</h2>
+
+            <ul class="todo__container">
+                {% for todo in incomplete %}     <!-- add for loop to show the tasks we will create-->
+
+                <li class="todo__item">
+                    <p>{{ todo.text }}</p>      <!-- make dynamic variable that will saved in the database -->
+                    <a class="btn btn-outline-success" href="{{ url_for('complete' , id =todo.id) }}">Complete ➡️</a>   <!-- add link to connect with backend we create for complete tasks -->
+                    <a class="todo__close" href="{{ url_for('delete', id= todo.id) }}">❌</a>      <!-- add link to connect with backend we create for delete tasks -->
+                </li>
+                {% endfor %}
+
+            </ul>
+        </div>
+        {% endif %}
+
+        {% if complete %}       <!-- add it to remove all boxes if we don't have anything -->
+        <div class="card todo__innerItemContainer">
+            <h2 class="todo__itemHeader">Done ✅</h2>
+            <ul class="todo__container">
+                {% for todo in complete %}              <!-- copied from above with change it to complete-->
+                <li class="todo__item">
+                    <p>{{ todo.text }}</p>              <!-- make dynamic variable that will saved in the database -->
+                    <a class="btn btn-outline-secondary" href="{{ url_for('uncheck' , id =todo.id) }}">⬅️
+                        Undo</a>
+                    <a class="todo__close" href="{{ url_for('delete', id= todo.id) }}">❌</a>      <!-- copied from above as it is -->
+                </li>
+                {% endfor %}                            <!-- copied from above-->
+            </ul>
+        </div>
+        {% endif %}         <!-- close the if statment -->
+    </div>
+</div>
+
+</body>
+</html>
+
